@@ -16,8 +16,9 @@ function rename_files {
             if [[ $wildcard ]]; then
                 mv "$file" "${file/$find/$replace_with}"
             else
-               echo "Path >>> ${file/$find/$replace_with}"
-               echo "Path >>> ${file/\/$find//$replace_with}"
+               echo "Path >>> ${file/$find/$replace_with}" > path1.txt
+               echo "Path >>> ${file/\/$find//$replace_with}"  >> path1.txt
+               echo "Path >>> ${\/$find//$replace_with}" >> path1.txt
                 mv "$file" "${file/\/$find//$replace_with}"
             fi
         done
