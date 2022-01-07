@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-rootFolder = ../OntarioVerify 
+rootFolder = OntarioVerify 
 set -xf
 function rename_files {
     find=$1
@@ -50,8 +50,8 @@ function replace_inside_files {
 }
 
 function replace {
-    find=$rootFolder/$1
-    replace_with=$rootFolder/$2
+    find=./$rootFolder/$1
+    replace_with=./$rootFolder/$2
     replace_inside_files "$find" "$replace_with"
     rename_files "$find" "$replace_with" "1"
 }
@@ -85,25 +85,25 @@ rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md $rootFolder/
-cp openverify/sources/README-fr.md $rootFolder/
-cp openverify/sources/tsconfig.json $rootFolder/
-cp openverify/sources/.env.template $rootFolder/
-cp openverify/sources/LICENSE.txt $rootFolder/
-cp openverify/sources/package.json $rootFolder/
-cp openverify/sources/src/__mocks/*.json $rootFolder/src/__mocks__/
-cp openverify/sources/src/assets/images/* $rootFolder/src/assets/images/
-cp openverify/sources/src/containers/home/*.tsx $rootFolder/src/containers/home/
-cp openverify/sources/android/app/*.json $rootFolder/android/app/
-cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png $rootFolder/android/app/src/main/res/mipmap-hdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png $rootFolder/android/app/src/main/res/mipmap-ldpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png $rootFolder/android/app/src/main/res/mipmap-mdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xxhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xxxhdpi/
-cp -R openverify/sources/ios/OpenVerify/Images.xcassets $rootFolder/ios/OpenVerify/
-cp openverify/sources/ios/*.plist $rootFolder/ios/
-sed -i "" "s~Open Verify~VérifOuverte~g" $rootFolder/src/translations/fr.json
+cp openverify/sources/README.md ./$rootFolder
+cp openverify/sources/README-fr.md ./$rootFolder
+cp openverify/sources/tsconfig.json ./$rootFolder
+cp openverify/sources/.env.template ./$rootFolder
+cp openverify/sources/LICENSE.txt ./$rootFolder
+cp openverify/sources/package.json ./$rootFolder
+cp openverify/sources/src/__mocks/*.json ./$rootFolder/src/__mocks__/
+cp openverify/sources/src/assets/images/* ./$rootFolder/src/assets/images/
+cp openverify/sources/src/containers/home/*.tsx ./$rootFolder/src/containers/home/
+cp openverify/sources/android/app/*.json ./$rootFolder/android/app/
+cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-hdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-ldpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-mdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-xhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-xxhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png ./$rootFolder/android/app/src/main/res/mipmap-xxxhdpi/
+cp -R openverify/sources/ios/OpenVerify/Images.xcassets ./$rootFolder/ios/OpenVerify/
+cp openverify/sources/ios/*.plist ./$rootFolder/ios/
+sed -i "" "s~Open Verify~VérifOuverte~g" ./$rootFolder/src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
 /*
