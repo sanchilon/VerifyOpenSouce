@@ -56,7 +56,7 @@ function replace {
     rename_files "$find" "$replace_with" "1"
 }
 BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
-mv .git "../${BACKUP_FOLDER}"
+mv ./OntarioVerify/.git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
 replace "OntarioVerify" "OpenVerify"
