@@ -34,10 +34,10 @@ my ($version) = @_;
   qx(git rm --cached -rf OntarioVerify);
   qx(rm -rf .git/modules && rm -f ./gitmodules);
   qx(git submodule add https://github.com/ongov/OntarioVerify);
-# chdir("OntarioVerify");
-# print qx(pwd); 
-# qx(git switch -C main origin/main);
-#qx(git pull --rebase origin main);
+  chdir("OntarioVerify");
+  print qx(pwd); 
+  qx(git switch -C main origin/main);
+ qx(git pull --rebase origin main);
 
 #qx(git switch -C open-source-preview-1.2.1);
 #qx(echo "openverify/" >> .gitignore);
