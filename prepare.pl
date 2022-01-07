@@ -30,7 +30,7 @@ transform();
 #################################################################
 sub initialize{
 my ($version) = @_;
-  qx(git clone https://github.com/ongov/OntarioVerify);
+  qx(git submodule add https://github.com/ongov/OntarioVerify);
  chdir("OntarioVerify");
  print qx(pwd); 
  qx(git switch -C main origin/main);
