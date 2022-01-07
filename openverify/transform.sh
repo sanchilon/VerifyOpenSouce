@@ -7,9 +7,9 @@ function rename_files {
     replace_with=$2
     wildcard=$3
     if [[ $wildcard ]]; then
-        files_to_rename=$(find . -name "*$find*")
+        files_to_rename=$(find ../OntarioVerify -name "*$find*")
     else
-        files_to_rename=$(find . -name "$find")
+        files_to_rename=$(find ../OntarioVerify -name "$find")
     fi
     if [[ $files_to_rename ]]; then
         IFS=$'\n'       # make newlines the only separator
@@ -50,8 +50,8 @@ function replace_inside_files {
 }
 
 function replace {
-    find=../OntarioVerify/$1
-    replace_with=../OntarioVerify/$2
+    find=$1
+    replace_with=$2
     replace_inside_files "$find" "$replace_with"
     rename_files "$find" "$replace_with" "1"
 }
