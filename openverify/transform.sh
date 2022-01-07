@@ -54,7 +54,7 @@ function replace {
     rename_files "$find" "$replace_with" "1"
 }
 BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
-mv .git "../${BACKUP_FOLDER}"
+mv ./OntarioVerify/.git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
 replace "OntarioVerify" "OpenVerify"
@@ -79,28 +79,28 @@ rename_files "ca" "openverify" ""
 rename_files "ontario" "replace" ""
 rename_files "verify" "me" ""
 set +f
-rm -Rf .github
+#rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md ./OntarioVerify/
-cp openverify/sources/README-fr.md ./OntarioVerify/
-cp openverify/sources/tsconfig.json ./OntarioVerify/
-cp openverify/sources/.env.template ./OntarioVerify/
-cp openverify/sources/LICENSE.txt ./OntarioVerify/
-cp openverify/sources/package.json ./OntarioVerify/
-cp openverify/sources/src/__mocks/*.json ./OntarioVerify/src/__mocks__/
-cp openverify/sources/src/assets/images/* ./OntarioVerify/src/assets/images/
-cp openverify/sources/src/containers/home/*.tsx ./OntarioVerify/src/containers/home/
-cp openverify/sources/android/app/*.json ./OntarioVerify/android/app/
-cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-hdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-ldpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-mdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxxhdpi/
-cp -R openverify/sources/ios/OpenVerify/Images.xcassets ./OntarioVerify/ios/OpenVerify/
-cp openverify/sources/ios/*.plist ./OntarioVerify/ios/
+cp ./openverify/sources/README.md ./OntarioVerify/
+cp ./openverify/sources/README-fr.md ./OntarioVerify/
+cp ./openverify/sources/tsconfig.json ./OntarioVerify/
+cp ./openverify/sources/.env.template ./OntarioVerify/
+cp ./openverify/sources/LICENSE.txt ./OntarioVerify/
+cp ./openverify/sources/package.json ./OntarioVerify/
+cp ./openverify/sources/src/__mocks/*.json ./OntarioVerify/src/__mocks__/
+cp ./openverify/sources/src/assets/images/* ./OntarioVerify/src/assets/images/
+cp ./openverify/sources/src/containers/home/*.tsx ./OntarioVerify/src/containers/home/
+cp ./openverify/sources/android/app/*.json ./OntarioVerify/android/app/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-hdpi/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-ldpi/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-mdpi/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xhdpi/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxhdpi/
+cp -R ./openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxxhdpi/
+cp -R ./openverify/sources/ios/OpenVerify/Images.xcassets ./OntarioVerify/ios/OpenVerify/
+cp ./openverify/sources/ios/*.plist ./OntarioVerify/ios/
 sed -i "" "s~Open Verify~VérifOuverte~g" ./OntarioVerify/src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
@@ -141,7 +141,7 @@ if [[ $files ]]; then
     done
 fi
 
-cp -R "../${BACKUP_FOLDER}" ./.git
+cp -R "../${BACKUP_FOLDER}" ./OntarioVerify/.git
 
 #yarn
 #yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'
