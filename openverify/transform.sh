@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 set -xf
+$rootFolder =./OntarioVerify
 function rename_files {
-    find=./OntarioVerify/$1
-    replace_with=./OntarioVerify/$2
+    find=$rootFolder/$1
+    replace_with=$rootFolder/$2
     wildcard=$3
     if [[ $wildcard ]]; then
         files_to_rename=$(find . -name "*$find*")
@@ -25,8 +26,8 @@ function rename_files {
 
 # ggrep is an alias on Mac for gnu grep - brew install grep
 function replace_inside_files {
-    find=./OntarioVerify/$1
-    replace_with=./OntarioVerify/$2
+    find=$rootFolder/$1
+    replace_with=$rootFolder/$2
     files=$(ggrep --exclude-dir=builds \
                   --exclude-dir=openverify/sources \
                   --exclude=transform.sh \
@@ -83,24 +84,24 @@ rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md ./
-cp openverify/sources/README-fr.md ./
-cp openverify/sources/tsconfig.json ./
-cp openverify/sources/.env.template ./
-cp openverify/sources/LICENSE.txt ./
-cp openverify/sources/package.json ./
-cp openverify/sources/src/__mocks/*.json src/__mocks__/
-cp openverify/sources/src/assets/images/* src/assets/images/
-cp openverify/sources/src/containers/home/*.tsx src/containers/home/
-cp openverify/sources/android/app/*.json android/app/
-cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png android/app/src/main/res/mipmap-hdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png android/app/src/main/res/mipmap-ldpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png android/app/src/main/res/mipmap-mdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png android/app/src/main/res/mipmap-xhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png android/app/src/main/res/mipmap-xxhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png android/app/src/main/res/mipmap-xxxhdpi/
-cp -R openverify/sources/ios/OpenVerify/Images.xcassets ios/OpenVerify/
-cp openverify/sources/ios/*.plist ios/
+cp openverify/sources/README.md $rootFolder
+cp openverify/sources/README-fr.md $rootFolder
+cp openverify/sources/tsconfig.json $rootFolder
+cp openverify/sources/.env.template $rootFolder
+cp openverify/sources/LICENSE.txt $rootFolder
+cp openverify/sources/package.json $rootFolder
+cp openverify/sources/src/__mocks/*.json $rootFolder/src/__mocks__/
+cp openverify/sources/src/assets/images/* $rootFoldersrc/assets/images/
+cp openverify/sources/src/containers/home/*.tsx $rootFoldersrc/containers/home/
+cp openverify/sources/android/app/*.json $rootFolder/android/app/
+cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png $rootFolder/android/app/src/main/res/mipmap-hdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png $rootFolder/android/app/src/main/res/mipmap-ldpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png $rootFolder/android/app/src/main/res/mipmap-mdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xxhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xxxhdpi/
+cp -R openverify/sources/ios/OpenVerify/Images.xcassets $rootFolder/ios/OpenVerify/
+cp openverify/sources/ios/*.plist $rootFolder/ios/
 sed -i "" "s~Open Verify~VérifOuverte~g" src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
@@ -141,11 +142,18 @@ if [[ $files ]]; then
     done
 fi
 
-cp -R "../${BACKUP_FOLDER}" ./.git
+cp -R "../../${BACKUP_FOLDER}" ./.git
 
-yarn
-yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'
-yarn eslint src
-yarn tsc
-yarn jest
-cd ios && npx pod-install
+#cd $rootFolder && \
+#   yarn && \
+#    yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'  &&\
+#    yarn eslint src &&  \
+#3    yarn tsc && \
+#    yarn jest && \
+ #   cd $rootFolder/ios && npx pod-install
+#yarn
+#yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'
+#yarn eslint src
+#yarn tsc
+#yarn jest
+#cd $rootFolder/ios && npx pod-install
