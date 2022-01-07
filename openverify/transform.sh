@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
+
+rootFolder = ../OntarioVerify 
 set -xf
-$rootFolder =../OntarioVerify
 function rename_files {
     find=$1
     replace_with=$2
@@ -28,14 +29,14 @@ function rename_files {
 function replace_inside_files {
     find=$1
     replace_with=$2
-    files=$(ggrep --exclude-dir=$rootFolder/builds \
-                  --exclude-dir=$rootFolder/openverify/sources \
-                  --exclude=$rootFolder/openverify/transform.sh \
-                  --exclude=$rootFolder/README.md \
-                  --exclude=$rootFolder/README-fr.md \
-                  --exclude-dir=$rootFolder/node_modules \
-                  --exclude-dir=$rootFolder/ios/Pods \
-                  --exclude-dir=$rootFolder/.git \
+    files=$(ggrep --exclude-dir=builds \
+                  --exclude-dir=openverify/sources \
+                  --exclude=transform.sh \
+                  --exclude=README.md \
+                  --exclude=README-fr.md \
+                  --exclude-dir=node_modules \
+                  --exclude-dir=ios/Pods \
+                  --exclude-dir=.git \
                   --recursive \
                   --files-with-matches "$find" .)
     if [[ $files ]]; then
@@ -54,10 +55,8 @@ function replace {
     replace_inside_files "$find" "$replace_with"
     rename_files "$find" "$replace_with" "1"
 }
-#BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
-BACKUP_FOLDER="$rootFolder/.git-backup-$(date "+%Y%m%d%H%M%S")"
-
-#mv .git "../${BACKUP_FOLDER}"
+BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
+mv .git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
 replace "OntarioVerify" "OpenVerify"
@@ -93,8 +92,8 @@ cp openverify/sources/.env.template $rootFolder/
 cp openverify/sources/LICENSE.txt $rootFolder/
 cp openverify/sources/package.json $rootFolder/
 cp openverify/sources/src/__mocks/*.json $rootFolder/src/__mocks__/
-cp openverify/sources/src/assets/images/* $rootFoldersrc/assets/images/
-cp openverify/sources/src/containers/home/*.tsx $rootFoldersrc/containers/home/
+cp openverify/sources/src/assets/images/* $rootFolder/src/assets/images/
+cp openverify/sources/src/containers/home/*.tsx $rootFolder/src/containers/home/
 cp openverify/sources/android/app/*.json $rootFolder/android/app/
 cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png $rootFolder/android/app/src/main/res/mipmap-hdpi/
 cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png $rootFolder/android/app/src/main/res/mipmap-ldpi/
@@ -125,15 +124,15 @@ STAR_COMMENT_LICENSE=$(cat <<EOF
 EOF
 )
 set -f
-files=$(ggrep "--exclude-dir=$rootFolder/android/builds" \
-                "--exclude-dir=$rootFolder/openverify/sources" \
-                "--exclude=$rootFolder/transform.sh" \
-                "--exclude-dir=$rootFolder/node_modules" \
-                "--exclude-dir=$rootFolder/ios/Pods" \
-                "--exclude-dir=$rootFolder/.git" \
-                "--exclude-dir=$rootFolder/test-data" \
-                "--recursive" \
-                "--files-without-match" \
+files=$(ggrep '--exclude-dir=android/builds' \
+                '--exclude-dir=openverify/sources' \
+                '--exclude=transform.sh' \
+                '--exclude-dir=node_modules' \
+                '--exclude-dir=ios/Pods' \
+                '--exclude-dir=.git' \
+                '--exclude-dir=test-data' \
+                '--recursive' \
+                '--files-without-match' \
                 "Copyright " . \
                 | ggrep -E '(\.ts|\.tsx|\.js|\.jsx|\.h|\.m|\.strings|\.java)$')
 if [[ $files ]]; then
@@ -144,18 +143,11 @@ if [[ $files ]]; then
     done
 fi
 
-#cp -R "${BACKUP_FOLDER}" $rootFolder/.git
+cp -R "../${BACKUP_FOLDER}" ./.git
 
-#cd $rootFolder && \å
-#   yarn && \
-#    yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'  &&\
-#    yarn eslint src &&  \
-#3    yarn tsc && \
-#    yarn jest && \
- #   cd $rootFolder/ios && npx pod-install
 #yarn
 #yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'
 #yarn eslint src
 #yarn tsc
 #yarn jest
-#cd $rootFolder/ios && npx pod-install
+#cd ios && npx pod-install
