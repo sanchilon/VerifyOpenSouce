@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 set -xf
 function rename_files {
-    find=$1
-    replace_with=$2
+    find=./OntarioVerify/$1
+    replace_with=./OntarioVerify/$2
     wildcard=$3
     if [[ $wildcard ]]; then
         files_to_rename=$(find . -name "*$find*")
@@ -25,8 +25,8 @@ function rename_files {
 
 # ggrep is an alias on Mac for gnu grep - brew install grep
 function replace_inside_files {
-    find=$1
-    replace_with=$2
+    find=./OntarioVerify/$1
+    replace_with=./OntarioVerify/$2
     files=$(ggrep --exclude-dir=builds \
                   --exclude-dir=openverify/sources \
                   --exclude=transform.sh \
@@ -48,8 +48,8 @@ function replace_inside_files {
 }
 
 function replace {
-    find=$1
-    replace_with=$2
+    find=./OntarioVerify/$1
+    replace_with=./OntarioVerify/$2
     replace_inside_files "$find" "$replace_with"
     rename_files "$find" "$replace_with" "1"
 }

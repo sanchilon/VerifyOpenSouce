@@ -21,8 +21,8 @@ sub zipit;
 
 initialize();
 transform();
-cleanup();
-diffbrnch();
+#cleanup();
+#diffbrnch();
 #pushbranch();
 #zipit();
 
