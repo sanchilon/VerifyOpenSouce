@@ -30,7 +30,8 @@ initialize();
 #################################################################
 sub initialize{
 my ($version) = @_;
-  qx(rm -rf .git/modules);
+  qx(git rm --cached -f OntarioVerify)
+  qx(rm -rf .git/modules && rm -f ./gitmodules);
   qx(git submodule add https://github.com/ongov/OntarioVerify);
  chdir("OntarioVerify");
  print qx(pwd); 
