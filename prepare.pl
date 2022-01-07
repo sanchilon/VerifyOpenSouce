@@ -20,7 +20,7 @@ sub zipit;
 
 
 initialize();
-#transform();
+transform();
 #cleanup();
 #diffbrnch();
 #pushbranch();
