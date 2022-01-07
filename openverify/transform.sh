@@ -79,10 +79,10 @@ rename_files "ca" "openverify" ""
 rename_files "ontario" "replace" ""
 rename_files "verify" "me" ""
 set +f
-#rm -Rf .github
-rm ./*.sh
-rm Contributing.md
-rm -Rf src/__mocks__/trust
+rm -Rf ./OntarioVerify/.github
+rm ./OntarioVerify/*.sh
+rm ./OntarioVerify/Contributing.md
+rm -Rf ./OntarioVerify/src/__mocks__/trust
 cp ./openverify/sources/README.md ./OntarioVerify/
 cp ./openverify/sources/README-fr.md ./OntarioVerify/
 cp ./openverify/sources/tsconfig.json ./OntarioVerify/
