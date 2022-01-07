@@ -53,9 +53,9 @@ sub transform{
  # chdir("../");
 print(qx(pwd),"\n");
 print(" Transforming .... \n\n");
-qx(./openverify/transform.sh);
-qx(./openverify/transform.sh);
-qx(./openverify/transform.sh);
+qx(./scripts/transform.sh);
+qx(./scripts/transform.sh);
+qx(./scripts/transform.sh);
 
 }
 
