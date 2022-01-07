@@ -28,14 +28,14 @@ function rename_files {
 function replace_inside_files {
     find=$1
     replace_with=$2
-    files=$(ggrep --exclude-dir=builds \
-                  --exclude-dir=openverify/sources \
-                  --exclude=transform.sh \
-                  --exclude=README.md \
-                  --exclude=README-fr.md \
-                  --exclude-dir=node_modules \
-                  --exclude-dir=ios/Pods \
-                  --exclude-dir=.git \
+    files=$(ggrep --exclude-dir=$rootFolder/builds \
+                  --exclude-dir=$rootFolder/openverify/sources \
+                  --exclude=$rootFolder/openverify/transform.sh \
+                  --exclude=$rootFolder/README.md \
+                  --exclude=$rootFolder/README-fr.md \
+                  --exclude-dir=$rootFolder/node_modules \
+                  --exclude-dir=$rootFolder/ios/Pods \
+                  --exclude-dir=$rootFolder/.git \
                   --recursive \
                   --files-with-matches "$find" .)
     if [[ $files ]]; then
@@ -57,7 +57,7 @@ function replace {
 #BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
 BACKUP_FOLDER="$rootFolder/.git-backup-$(date "+%Y%m%d%H%M%S")"
 
-mv .git "../${BACKUP_FOLDER}"
+#mv .git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
 replace "OntarioVerify" "OpenVerify"
@@ -125,15 +125,15 @@ STAR_COMMENT_LICENSE=$(cat <<EOF
 EOF
 )
 set -f
-files=$(ggrep '--exclude-dir=$rootFolder/android/builds' \
-                '--exclude-dir=$rootFolder/openverify/sources' \
-                '--exclude=$rootFolder/transform.sh' \
-                '--exclude-dir=$rootFolder/node_modules' \
-                '--exclude-dir=$rootFolder/ios/Pods' \
-                '--exclude-dir=$rootFolder/.git' \
-                '--exclude-dir=$rootFolder/test-data' \
-                '--recursive' \
-                '--files-without-match' \
+files=$(ggrep "--exclude-dir=$rootFolder/android/builds" \
+                "--exclude-dir=$rootFolder/openverify/sources" \
+                "--exclude=$rootFolder/transform.sh" \
+                "--exclude-dir=$rootFolder/node_modules" \
+                "--exclude-dir=$rootFolder/ios/Pods" \
+                "--exclude-dir=$rootFolder/.git" \
+                "--exclude-dir=$rootFolder/test-data" \
+                "--recursive" \
+                "--files-without-match" \
                 "Copyright " . \
                 | ggrep -E '(\.ts|\.tsx|\.js|\.jsx|\.h|\.m|\.strings|\.java)$')
 if [[ $files ]]; then
