@@ -83,25 +83,25 @@ rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md ./
-cp openverify/sources/README-fr.md ./
-cp openverify/sources/tsconfig.json ./
-cp openverify/sources/.env.template ./
-cp openverify/sources/LICENSE.txt ./
-cp openverify/sources/package.json ./
-cp openverify/sources/src/__mocks/*.json src/__mocks__/
-cp openverify/sources/src/assets/images/* src/assets/images/
-cp openverify/sources/src/containers/home/*.tsx src/containers/home/
-cp openverify/sources/android/app/*.json android/app/
-cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png android/app/src/main/res/mipmap-hdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png android/app/src/main/res/mipmap-ldpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png android/app/src/main/res/mipmap-mdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png android/app/src/main/res/mipmap-xhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png android/app/src/main/res/mipmap-xxhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png android/app/src/main/res/mipmap-xxxhdpi/
-cp -R openverify/sources/ios/OpenVerify/Images.xcassets ios/OpenVerify/
-cp openverify/sources/ios/*.plist ios/
-sed -i "" "s~Open Verify~VérifOuverte~g" src/translations/fr.json
+cp openverify/sources/README.md ./OntarioVerify/
+cp openverify/sources/README-fr.md ./OntarioVerify/
+cp openverify/sources/tsconfig.json ./OntarioVerify/
+cp openverify/sources/.env.template ./OntarioVerify/
+cp openverify/sources/LICENSE.txt ./OntarioVerify/
+cp openverify/sources/package.json ./OntarioVerify/
+cp openverify/sources/src/__mocks/*.json ./OntarioVerify/src/__mocks__/
+cp openverify/sources/src/assets/images/* ./OntarioVerify/src/assets/images/
+cp openverify/sources/src/containers/home/*.tsx ./OntarioVerify/src/containers/home/
+cp openverify/sources/android/app/*.json ./OntarioVerify/android/app/
+cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-hdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-ldpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-mdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png ./OntarioVerify/android/app/src/main/res/mipmap-xxxhdpi/
+cp -R openverify/sources/ios/OpenVerify/Images.xcassets ./OntarioVerify/ios/OpenVerify/
+cp openverify/sources/ios/*.plist ./OntarioVerify/ios/
+sed -i "" "s~Open Verify~VérifOuverte~g" ./OntarioVerify/src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
 /*
