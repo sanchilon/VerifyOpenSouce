@@ -9,7 +9,7 @@ BEGIN {
     print("Begin Open Sourcing \n");
    print("#####################################\n");
 }
-my $projRoot = "./OpenVerify";
+my $projRoot = "./OntarioVerify";
 
 sub initialize;
 sub transform;
@@ -30,11 +30,11 @@ transform();
 #################################################################
 sub initialize{
 my ($version) = @_;
-  qx(rm -rf OpenVerify);
-  qx(git rm --cached -f OpenVerify);
+  qx(rm -rf OntarioVerify);
+  qx(git rm --cached -rf OntarioVerify);
   qx(rm -rf .git/modules && rm -f ./gitmodules);
-  qx(git submodule add https://github.com/ongov/OpenVerify);
-# chdir("OpenVerify");
+  qx(git submodule add https://github.com/ongov/OntarioVerify);
+# chdir("OntarioVerify");
 # print qx(pwd); 
 # qx(git switch -C main origin/main);
 #qx(git pull --rebase origin main);

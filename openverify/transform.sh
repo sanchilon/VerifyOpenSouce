@@ -32,6 +32,7 @@ function replace_inside_files {
     files=$(ggrep --exclude-dir=builds \
                   --exclude-dir=openverify/sources \
                   --exclude=transform.sh \
+                  --exclude=prepare.pl \
                   --exclude=README.md \
                   --exclude=README-fr.md \
                   --exclude-dir=node_modules \
@@ -127,6 +128,7 @@ set -f
 files=$(ggrep '--exclude-dir=android/builds' \
                 '--exclude-dir=openverify/sources' \
                 '--exclude=transform.sh' \
+                ' --exclude=prepare.pl' \
                 '--exclude-dir=node_modules' \
                 '--exclude-dir=ios/Pods' \
                 '--exclude-dir=.git' \
