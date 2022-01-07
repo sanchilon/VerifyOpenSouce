@@ -16,6 +16,8 @@ function rename_files {
             if [[ $wildcard ]]; then
                 mv "$file" "${file/$find/$replace_with}"
             else
+               echo "Path >>> ${file/$find/$replace_with}"
+               echo "Path >>> ${file/\/$find//$replace_with}"
                 mv "$file" "${file/\/$find//$replace_with}"
             fi
         done
@@ -54,7 +56,7 @@ function replace {
     rename_files "$find" "$replace_with" "1"
 }
 BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
-mv ./OntarioVerify/.git "../${BACKUP_FOLDER}"
+mv .git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
 replace "OntarioVerify" "OpenVerify"
