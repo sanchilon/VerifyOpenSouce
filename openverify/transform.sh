@@ -1,15 +1,13 @@
 #! /usr/bin/env bash
-
-rootFolder = OntarioVerify 
 set -xf
 function rename_files {
     find=$1
     replace_with=$2
     wildcard=$3
     if [[ $wildcard ]]; then
-        files_to_rename=$(find ../OntarioVerify -name "*$find*")
+        files_to_rename=$(find . -name "*$find*")
     else
-        files_to_rename=$(find ../OntarioVerify -name "$find")
+        files_to_rename=$(find . -name "$find")
     fi
     if [[ $files_to_rename ]]; then
         IFS=$'\n'       # make newlines the only separator
@@ -29,14 +27,14 @@ function rename_files {
 function replace_inside_files {
     find=$1
     replace_with=$2
-    files=$(ggrep --exclude-dir=../OntarioVerify/builds \
-                  --exclude-dir=../OntarioVerify/openverify/sources \
-                  --exclude=../OntarioVerify/openverify/transform.sh \
-                  --exclude=../OntarioVerify/README.md \
-                  --exclude=../OntarioVerify/README-fr.md \
-                  --exclude-dir=../OntarioVerify/node_modules \
-                  --exclude-dir=../OntarioVerify/ios/Pods \
-                  --exclude-dir=../OntarioVerify/.git \
+    files=$(ggrep --exclude-dir=builds \
+                  --exclude-dir=openverify/sources \
+                  --exclude=transform.sh \
+                  --exclude=README.md \
+                  --exclude=README-fr.md \
+                  --exclude-dir=node_modules \
+                  --exclude-dir=ios/Pods \
+                  --exclude-dir=.git \
                   --recursive \
                   --files-with-matches "$find" .)
     if [[ $files ]]; then
@@ -85,25 +83,25 @@ rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md ../OntarioVerify
-cp openverify/sources/README-fr.md ../OntarioVerify
-cp openverify/sources/tsconfig.json ../OntarioVerify
-cp openverify/sources/.env.template ../OntarioVerify
-cp openverify/sources/LICENSE.txt ../OntarioVerify
-cp openverify/sources/package.json ../OntarioVerify
-cp openverify/sources/src/__mocks/*.json ../OntarioVerify/src/__mocks__/
-cp openverify/sources/src/assets/images/* ../OntarioVerify/src/assets/images/
-cp openverify/sources/src/containers/home/*.tsx ../OntarioVerify/src/containers/home/
-cp openverify/sources/android/app/*.json ../OntarioVerify/android/app/
-cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-hdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-ldpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-mdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-xhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-xxhdpi/
-cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png ../OntarioVerify/android/app/src/main/res/mipmap-xxxhdpi/
-cp -R openverify/sources/ios/OpenVerify/Images.xcassets ../OntarioVerify/ios/OpenVerify/
-cp openverify/sources/ios/*.plist ../OntarioVerify/ios/
-sed -i "" "s~Open Verify~VérifOuverte~g" ../OntarioVerify/src/translations/fr.json
+cp openverify/sources/README.md ./
+cp openverify/sources/README-fr.md ./
+cp openverify/sources/tsconfig.json ./
+cp openverify/sources/.env.template ./
+cp openverify/sources/LICENSE.txt ./
+cp openverify/sources/package.json ./
+cp openverify/sources/src/__mocks/*.json src/__mocks__/
+cp openverify/sources/src/assets/images/* src/assets/images/
+cp openverify/sources/src/containers/home/*.tsx src/containers/home/
+cp openverify/sources/android/app/*.json android/app/
+cp -R openverify/sources/android/app/src/main/res/mipmap-hdpi/*.png android/app/src/main/res/mipmap-hdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-ldpi/*.png android/app/src/main/res/mipmap-ldpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-mdpi/*.png android/app/src/main/res/mipmap-mdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xhdpi/*.png android/app/src/main/res/mipmap-xhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png android/app/src/main/res/mipmap-xxhdpi/
+cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png android/app/src/main/res/mipmap-xxxhdpi/
+cp -R openverify/sources/ios/OpenVerify/Images.xcassets ios/OpenVerify/
+cp openverify/sources/ios/*.plist ios/
+sed -i "" "s~Open Verify~VérifOuverte~g" src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
 /*
@@ -124,13 +122,13 @@ STAR_COMMENT_LICENSE=$(cat <<EOF
 EOF
 )
 set -f
-files=$(ggrep '--exclude-dir=../OntarioVerify/android/builds' \
-                '--exclude-dir=../OntarioVerify/openverify/sources' \
-                '--exclude=../OntarioVerify/transform.sh' \
-                '--exclude-dir=../OntarioVerify/node_modules' \
-                '--exclude-dir=../OntarioVerify/ios/Pods' \
-                '--exclude-dir=../OntarioVerify/.git' \
-                '--exclude-dir=../OntarioVerify/test-data' \
+files=$(ggrep '--exclude-dir=android/builds' \
+                '--exclude-dir=openverify/sources' \
+                '--exclude=transform.sh' \
+                '--exclude-dir=node_modules' \
+                '--exclude-dir=ios/Pods' \
+                '--exclude-dir=.git' \
+                '--exclude-dir=test-data' \
                 '--recursive' \
                 '--files-without-match' \
                 "Copyright " . \
