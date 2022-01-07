@@ -20,7 +20,7 @@ sub zipit;
 
 
 initialize();
-transform();
+#transform();
 #cleanup();
 #diffbrnch();
 #pushbranch();
@@ -30,22 +30,25 @@ transform();
 #################################################################
 sub initialize{
 my ($version) = @_;
+  qx(rm -rf .git/modules);
   qx(git submodule add https://github.com/ongov/OntarioVerify);
  chdir("OntarioVerify");
  print qx(pwd); 
  qx(git switch -C main origin/main);
 qx(git pull --rebase origin main);
-qx(git switch -C open-source-preview-1.2.1);
+
+#qx(git switch -C open-source-preview-1.2.1);
 #qx(echo "openverify/" >> .gitignore);
 #qx(git commit -am "add .gitignore ");
-qx(git switch -C open-source-script-1.2.1 origin/open-source-script-1.2.1);
-qx(git switch open-source-preview-1.2.1);
-qx(git restore --source open-source-script-1.2.1 openverify);
+#qx(git switch -C open-source-script-1.2.1 origin/open-source-script-1.2.1);
+#qx(git switch open-source-preview-1.2.1);
+#qx(git restore --source open-source-script-1.2.1 openverify);
 #qx(git clean -xdf);
 
 }
 
 sub transform{
+  chdir("../");
 print(qx(pwd),"\n");
 print(" Transforming .... \n\n");
 qx(./openverify/transform.sh);
