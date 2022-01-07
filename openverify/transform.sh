@@ -54,7 +54,9 @@ function replace {
     replace_inside_files "$find" "$replace_with"
     rename_files "$find" "$replace_with" "1"
 }
-BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
+#BACKUP_FOLDER=".git-backup-$(date "+%Y%m%d%H%M%S")"
+BACKUP_FOLDER="$rootFolder/.git-backup-$(date "+%Y%m%d%H%M%S")"
+
 mv .git "../${BACKUP_FOLDER}"
 replace "Verify Ontario" "Open Verify"
 replace "VerifyOntario" "OpenVerify"
@@ -84,12 +86,12 @@ rm -Rf .github
 rm ./*.sh
 rm Contributing.md
 rm -Rf src/__mocks__/trust
-cp openverify/sources/README.md $rootFolder
-cp openverify/sources/README-fr.md $rootFolder
-cp openverify/sources/tsconfig.json $rootFolder
-cp openverify/sources/.env.template $rootFolder
-cp openverify/sources/LICENSE.txt $rootFolder
-cp openverify/sources/package.json $rootFolder
+cp openverify/sources/README.md $rootFolder/
+cp openverify/sources/README-fr.md $rootFolder/
+cp openverify/sources/tsconfig.json $rootFolder/
+cp openverify/sources/.env.template $rootFolder/
+cp openverify/sources/LICENSE.txt $rootFolder/
+cp openverify/sources/package.json $rootFolder/
 cp openverify/sources/src/__mocks/*.json $rootFolder/src/__mocks__/
 cp openverify/sources/src/assets/images/* $rootFoldersrc/assets/images/
 cp openverify/sources/src/containers/home/*.tsx $rootFoldersrc/containers/home/
@@ -102,7 +104,7 @@ cp -R openverify/sources/android/app/src/main/res/mipmap-xxhdpi/*.png $rootFolde
 cp -R openverify/sources/android/app/src/main/res/mipmap-xxxhdpi/*.png $rootFolder/android/app/src/main/res/mipmap-xxxhdpi/
 cp -R openverify/sources/ios/OpenVerify/Images.xcassets $rootFolder/ios/OpenVerify/
 cp openverify/sources/ios/*.plist $rootFolder/ios/
-sed -i "" "s~Open Verify~VérifOuverte~g" src/translations/fr.json
+sed -i "" "s~Open Verify~VérifOuverte~g" $rootFolder/src/translations/fr.json
 
 STAR_COMMENT_LICENSE=$(cat <<EOF
 /*
@@ -123,13 +125,13 @@ STAR_COMMENT_LICENSE=$(cat <<EOF
 EOF
 )
 set -f
-files=$(ggrep '--exclude-dir=android/builds' \
-                '--exclude-dir=openverify/sources' \
-                '--exclude=transform.sh' \
-                '--exclude-dir=node_modules' \
-                '--exclude-dir=ios/Pods' \
-                '--exclude-dir=.git' \
-                '--exclude-dir=test-data' \
+files=$(ggrep '--exclude-dir=$rootFolder/android/builds' \
+                '--exclude-dir=$rootFolder/openverify/sources' \
+                '--exclude=$rootFolder/transform.sh' \
+                '--exclude-dir=$rootFolder/node_modules' \
+                '--exclude-dir=$rootFolder/ios/Pods' \
+                '--exclude-dir=$rootFolder/.git' \
+                '--exclude-dir=$rootFolder/test-data' \
                 '--recursive' \
                 '--files-without-match' \
                 "Copyright " . \
@@ -142,9 +144,9 @@ if [[ $files ]]; then
     done
 fi
 
-cp -R "../../${BACKUP_FOLDER}" ./.git
+#cp -R "${BACKUP_FOLDER}" $rootFolder/.git
 
-#cd $rootFolder && \
+#cd $rootFolder && \å
 #   yarn && \
 #    yarn prettier -w --bracket-same-line 'src' '!src/__mocks__'  &&\
 #    yarn eslint src &&  \
